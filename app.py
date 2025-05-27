@@ -41,7 +41,6 @@ if N:
             muestra = rng.choice(np.arange(1, N + 1), size=n, replace=False)
             muestra.sort()
             st.session_state["muestra_generada"] = muestra
-            st.success(f"Se generaron correctamente {n} casos únicos.")
 
     muestra = st.session_state.get("muestra_generada")
 
@@ -53,7 +52,7 @@ if N:
         )
 
         st.markdown("---")
-        st.subheader("3. Descargar la muestra o la población")
+        st.subheader("3. Descargar la muestra o el listado completo")
 
         # Botón: descargar muestra
         csv = df_muestra.to_csv(index=False).encode('utf-8')
@@ -66,7 +65,7 @@ if N:
 
         # Botón: descargar población completa con "muestra" marcado
         todos = pd.DataFrame({
-            "Población con marca": [
+            "Listado con muestra": [
                 f"{i} muestra" if i in muestra else str(i)
                 for i in range(1, N + 1)
             ]
@@ -74,15 +73,20 @@ if N:
 
         csv_todos = todos.to_csv(index=False).encode('utf-8')
         st.download_button(
-            label="Descargar población con muestra marcada",
+            label="Descargar listado completo con muestra marcada",
             data=csv_todos,
-            file_name="poblacion_con_muestra.csv",
+            file_name="listado_completo_con_muestra.csv",
             mime="text/csv"
         )
 
         st.markdown("---")
         st.subheader("Casos de la muestra")
-        st.markdown(f"Cantidad total de casos en la muestra: **{len(muestra)}**")
+
+        st.markdown(
+            f"<h3 style='text-align: center;'>Tamaño muestral requerido:</h3>"
+            f"<h1 style='text-align: center; color: green;'>{len(muestra)} casos</h1>",
+            unsafe_allow_html=True
+        )
 
         muestra_txt = ", ".join(str(i) for i in muestra)
         st.text_area("", muestra_txt, height=100)

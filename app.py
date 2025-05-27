@@ -6,11 +6,10 @@ st.set_page_config(page_title="Generador de muestras - Departamento de Estadíst
 
 st.title("📊 Generador de muestras aleatorias representativas")
 
-# Texto institucional
 st.markdown(
     "Esta herramienta fue desarrollada por el **Departamento de Estadísticas** para facilitar la generación de muestras aleatorias representativas. "
     "El tamaño de la muestra se calcula automáticamente utilizando un **95% de nivel de confianza** y un **5% de margen de error**, "
-    "criterios metodológicos ampliamente aceptados y consistentes con los utilizados en muestras previas del organismo. "
+    "criterios metodológicos sólidos y alineados con los empleados en diseños muestrales previos. "
     "El cálculo asume una proporción esperada de máxima variabilidad (p = 0.5).",
     unsafe_allow_html=True
 )
@@ -20,65 +19,69 @@ st.subheader("1. Ingresar el tamaño de la población")
 
 N = st.number_input("Tamaño total de la población", min_value=1, step=1)
 
+if "muestra_generada" not in st.session_state:
+    st.session_state["muestra_generada"] = None
+
 if N:
     st.markdown("---")
     st.subheader("2. Generar muestra")
 
     if st.button("Generar muestra"):
-        # Parámetros fijos
         Z = 1.96
         e = 0.05
         p = 0.5
 
-        # Cálculo muestral con corrección por población finita
         n_0 = (Z**2 * p * (1 - p)) / (e**2)
         n = round((N * n_0) / (n_0 + N - 1))
 
         if n > N:
             st.error("El tamaño calculado de la muestra es mayor que la población.")
         else:
-            st.success(f"Se generaron correctamente {n} casos únicos.")
-
             rng = np.random.default_rng()
             muestra = rng.choice(np.arange(1, N + 1), size=n, replace=False)
             muestra.sort()
+            st.session_state["muestra_generada"] = muestra
+            st.success(f"Se generaron correctamente {n} casos únicos.")
 
-            df_muestra = pd.DataFrame(
-                muestra,
-                columns=["Caso seleccionado"],
-                index=np.arange(1, len(muestra) + 1)
-            )
+    muestra = st.session_state.get("muestra_generada")
 
-            st.markdown("---")
-            st.subheader("3. Descargar o copiar la muestra")
+    if muestra is not None:
+        df_muestra = pd.DataFrame(
+            muestra,
+            columns=["Caso seleccionado"],
+            index=np.arange(1, len(muestra) + 1)
+        )
 
-            # Ver primeros 10 casos
-            if st.checkbox("Ver los primeros 10 casos generados"):
-                st.dataframe(df_muestra.head(10), use_container_width=True)
+        st.markdown("---")
+        st.subheader("3. Descargar o copiar la muestra")
 
-            # Descargar solo la muestra
-            csv = df_muestra.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                label="📥 Descargar muestra en CSV",
-                data=csv,
-                file_name="muestra_aleatoria.csv",
-                mime="text/csv"
-            )
+        if st.checkbox("Ver los primeros 10 casos generados"):
+            st.dataframe(df_muestra.head(10), use_container_width=True)
 
-            # Copiar listado
-            muestra_txt = ", ".join(str(i) for i in muestra)
-            st.text_area("Copiar al portapapeles", muestra_txt, height=100)
+        csv = df_muestra.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="Descargar muestra",
+            data=csv,
+            file_name="muestra.csv",
+            mime="text/csv"
+        )
 
-            # Crear columna con todo el universo y (x) marcando la muestra
-            todos = pd.DataFrame({
-                "Columna para Excel": [f"{i} (x)" if i in muestra else str(i) for i in range(1, N + 1)]
-            })
+        todos = pd.DataFrame({
+            "Población con marca": [
+                f"{i} muestra" if i in muestra else str(i)
+                for i in range(1, N + 1)
+            ]
+        })
 
-            # Descargar columna con marcados
-            csv_todos = todos.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                label="📥 Descargar columna para Excel con marcados (x)",
-                data=csv_todos,
-                file_name="muestra_con_marcados.csv",
-                mime="text/csv"
-            )
+        csv_todos = todos.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="Descargar población con muestra marcada",
+            data=csv_todos,
+            file_name="poblacion_con_muestra.csv",
+            mime="text/csv"
+        )
+
+        st.markdown("---")
+        st.subheader("Casos de la muestra")
+        muestra_txt = ", ".join(str(i) for i in muestra)
+        st.text_area("Casos de la muestra", muestra_txt, height=100)

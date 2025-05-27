@@ -16,7 +16,7 @@ st.markdown(
 )
 
 st.markdown(
-    "Esta herramienta fue desarrollada por el **Departamento de Estadísticas del MPD** para facilitar la generación de muestras aleatorias representativas. "
+    "Esta herramienta fue desarrollada por el **Departamento de Estadísticas** para facilitar la generación de muestras aleatorias representativas. "
     "El tamaño de la muestra se calcula automáticamente utilizando un **95% de nivel de confianza** y un **5% de margen de error**, "
     "criterios metodológicos sólidos y alineados con los empleados en diseños muestrales previos. "
     "El cálculo asume una proporción esperada de máxima variabilidad (p = 0.5).",

@@ -53,11 +53,9 @@ if N:
         )
 
         st.markdown("---")
-        st.subheader("3. Descargar o copiar la muestra")
+        st.subheader("3. Descargar la muestra o la población")
 
-        if st.checkbox("Ver los primeros 10 casos generados"):
-            st.dataframe(df_muestra.head(10), use_container_width=True)
-
+        # Botón: descargar muestra
         csv = df_muestra.to_csv(index=False).encode('utf-8')
         st.download_button(
             label="Descargar muestra",
@@ -66,6 +64,7 @@ if N:
             mime="text/csv"
         )
 
+        # Botón: descargar población completa con "muestra" marcado
         todos = pd.DataFrame({
             "Población con marca": [
                 f"{i} muestra" if i in muestra else str(i)
@@ -83,5 +82,7 @@ if N:
 
         st.markdown("---")
         st.subheader("Casos de la muestra")
+        st.markdown(f"Cantidad total de casos en la muestra: **{len(muestra)}**")
+
         muestra_txt = ", ".join(str(i) for i in muestra)
-        st.text_area("Casos de la muestra", muestra_txt, height=100)
+        st.text_area("", muestra_txt, height=100)

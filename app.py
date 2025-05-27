@@ -4,6 +4,14 @@ import pandas as pd
 
 st.set_page_config(page_title="Generador de muestras - Departamento de Estadísticas", layout="centered")
 
+# ✅ Logo institucional centrado
+st.markdown(
+    "<div style='text-align: center;'>"
+    "<img src='https://raw.githubusercontent.com/GuidoDili/generador-muestras-mpd/main/logo_mpd.png' width='250'>"
+    "</div>",
+    unsafe_allow_html=True
+)
+
 st.title("📊 Generador de muestras aleatorias representativas")
 
 st.markdown(
@@ -19,7 +27,7 @@ st.subheader("1. Ingresar el tamaño de la población")
 
 N = st.number_input("Tamaño total de la población", min_value=1, step=1)
 
-# Reiniciar la muestra si cambia N
+# ✅ Reiniciar la muestra si cambia la población
 if "poblacion_anterior" not in st.session_state:
     st.session_state["poblacion_anterior"] = N
 elif st.session_state["poblacion_anterior"] != N:
@@ -58,6 +66,7 @@ if N:
             index=np.arange(1, len(muestra) + 1)
         )
 
+        # ✅ Tamaño muestral destacado y centrado
         st.markdown(
             f"<div style='text-align:center; font-size:26px;'>Tamaño muestral requerido: "
             f"<span style='color:green; font-weight:bold;'>{len(muestra)} casos</span></div>",

@@ -19,6 +19,13 @@ st.subheader("1. Ingresar el tamaño de la población")
 
 N = st.number_input("Tamaño total de la población", min_value=1, step=1)
 
+# Reiniciar la muestra si cambia N
+if "poblacion_anterior" not in st.session_state:
+    st.session_state["poblacion_anterior"] = N
+elif st.session_state["poblacion_anterior"] != N:
+    st.session_state["poblacion_anterior"] = N
+    st.session_state["muestra_generada"] = None
+
 if "muestra_generada" not in st.session_state:
     st.session_state["muestra_generada"] = None
 
@@ -51,7 +58,6 @@ if N:
             index=np.arange(1, len(muestra) + 1)
         )
 
-        # 👇 NUEVO: mostrar tamaño muestral arriba y más compacto
         st.markdown(
             f"<div style='text-align:center; font-size:26px;'>Tamaño muestral requerido: "
             f"<span style='color:green; font-weight:bold;'>{len(muestra)} casos</span></div>",

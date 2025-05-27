@@ -51,6 +51,13 @@ if N:
             index=np.arange(1, len(muestra) + 1)
         )
 
+        # 👇 NUEVO: mostrar tamaño muestral arriba y más compacto
+        st.markdown(
+            f"<div style='text-align:center; font-size:26px;'>Tamaño muestral requerido: "
+            f"<span style='color:green; font-weight:bold;'>{len(muestra)} casos</span></div>",
+            unsafe_allow_html=True
+        )
+
         st.markdown("---")
         st.subheader("3. Descargar la muestra o el listado completo")
 
@@ -81,12 +88,6 @@ if N:
 
         st.markdown("---")
         st.subheader("Casos de la muestra")
-
-        st.markdown(
-            f"<h3 style='text-align: center;'>Tamaño muestral requerido:</h3>"
-            f"<h1 style='text-align: center; color: green;'>{len(muestra)} casos</h1>",
-            unsafe_allow_html=True
-        )
 
         muestra_txt = ", ".join(str(i) for i in muestra)
         st.text_area("", muestra_txt, height=100)

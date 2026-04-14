@@ -50,9 +50,9 @@ if "muestra_generada" not in st.session_state:
 
 if N:
     st.markdown("---")
-    st.subheader("2. Generar muestra")
+    st.subheader("2. Generar nueva muestra")
 
-    if st.button("Generar muestra"):
+    if st.button("Generar nueva muestra"):
         Z = 1.96
         e = 0.05
         p = 0.5

@@ -95,6 +95,13 @@ if N:
             "</div>",
             unsafe_allow_html=True
         )
+
+        st.markdown("---")
+        st.subheader("Listado de casos seleccionados")
+
+        muestra_txt = ", ".join(str(i) for i in muestra)
+        st.text_area("", muestra_txt, height=100)
+
         st.markdown("---")
         st.subheader("3. Descargar la muestra o el listado completo")
 
@@ -122,11 +129,3 @@ if N:
             file_name="listado_completo_con_muestra.csv",
             mime="text/csv"
         )
-
-        st.markdown("---")
-        st.subheader("Listado de casos seleccionados")
-
-        st.markdown("---")
-
-        muestra_txt = ", ".join(str(i) for i in muestra)
-        st.text_area("", muestra_txt, height=100)

@@ -102,6 +102,8 @@ if N:
         muestra_txt = ", ".join(str(i) for i in muestra)
         st.text_area("", muestra_txt, height=100)
 
+        st.dataframe(df_muestra, use_container_width=True)
+
         st.markdown("---")
         st.subheader("3. Descargar la muestra o el listado completo")
 

@@ -116,10 +116,10 @@ if N:
 
         # Botón: descargar población completa con "muestra" marcado
         todos = pd.DataFrame({
-            "Listado con muestra": [
-                f"{i} muestra" if i in muestra else str(i)
-                for i in range(1, N + 1)
-            ]
+    "Caso y muestra": [
+        f"{i} (M)" if i in muestra else str(i)
+        for i in range(1, N + 1)
+        ]
         })
 
         csv_todos = todos.to_csv(index=False).encode('utf-8')

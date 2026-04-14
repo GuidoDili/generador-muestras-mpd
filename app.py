@@ -62,9 +62,9 @@ if N:
             muestra.sort()
             st.session_state["muestra_generada"] = muestra
 
-    muestra = st.session_state.get("muestra_generada")
+       muestra = st.session_state.get("muestra_generada")
 
-       if muestra is not None:
+    if muestra is not None:
         df_muestra = pd.DataFrame(
             muestra,
             columns=["Caso seleccionado"],

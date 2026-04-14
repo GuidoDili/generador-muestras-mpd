@@ -128,13 +128,5 @@ if N:
 
         st.markdown("---")
 
-        st.markdown(
-            "<div style='font-size:13px; color:gray;'>"
-            "<b>Importante:</b> en ningún momento las bases de datos se cargan en la aplicación. "
-            "La herramienta únicamente genera la selección muestral a partir del tamaño de la población ingresado."
-            "</div>",
-            unsafe_allow_html=True
-        )
-
         muestra_txt = ", ".join(str(i) for i in muestra)
         st.text_area("", muestra_txt, height=100)

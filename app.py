@@ -27,8 +27,8 @@ st.markdown(
 )
 
 st.markdown(
-    "<div style='font-size:14px; color:gray;'>"
-    "La aplicación permite trabajar en un entorno seguro, ya que no requiere cargar ni compartir bases de datos."
+    "<div style='font-size:14px; color:#444; margin-top:5px;'>"
+    "<b>Entorno seguro:</b> la aplicación no requiere cargar ni compartir bases de datos."
     "</div>",
     unsafe_allow_html=True
 )

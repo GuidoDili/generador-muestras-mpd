@@ -20,11 +20,10 @@ st.markdown(
     "El tamaño de la muestra se calcula automáticamente utilizando un **95% de nivel de confianza** y un **5% de margen de error**, "
     "criterios metodológicos sólidos y alineados con los empleados en diseños muestrales previos. "
     "El cálculo asume una proporción esperada de máxima variabilidad (p = 0.5)."
-    )
+)
 
 st.markdown(
-    "Permite calcular y seleccionar muestras aleatorias representativas para relevar una cantidad menor de casos y extrapolar los resultados al total de la población.",
-    unsafe_allow_html=True
+    "Permite calcular y seleccionar muestras aleatorias representativas para relevar una cantidad menor de casos y extrapolar los resultados al total de la población."
 )
 
 st.markdown("---")
@@ -62,7 +61,7 @@ if N:
             muestra.sort()
             st.session_state["muestra_generada"] = muestra
 
-       muestra = st.session_state.get("muestra_generada")
+    muestra = st.session_state.get("muestra_generada")
 
     if muestra is not None:
         df_muestra = pd.DataFrame(
@@ -83,17 +82,6 @@ if N:
             unsafe_allow_html=True
         )
 
-        st.markdown("---")
-        st.subheader("3. Descargar la muestra o el listado completo")
-
-        # Botón: descargar muestra
-        csv = df_muestra.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="Descargar muestra",
-            data=csv,
-            file_name="muestra.csv",
-            mime="text/csv"
-        )
         st.markdown("---")
         st.subheader("3. Descargar la muestra o el listado completo")
 

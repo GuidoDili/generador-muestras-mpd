@@ -82,6 +82,12 @@ if N:
             unsafe_allow_html=True
         )
 
+        st.markdown(
+            "<div style='text-align:center; font-size:14px; color:gray;'>"
+            "Nivel de confianza: 95% | Margen de error: 5% | Máxima variabilidad"
+            "</div>",
+            unsafe_allow_html=True
+        )
         st.markdown("---")
         st.subheader("3. Descargar la muestra o el listado completo")
 

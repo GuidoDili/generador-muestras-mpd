@@ -91,7 +91,7 @@ if N:
 
         st.markdown(
             "<div style='text-align:center; font-size:14px; color:gray;'>"
-            "Nivel de confianza: 95% | Margen de error: 5% | Máxima variabilidad (p = 0.5)"
+            "Nivel de confianza: 95% | Margen de error: 5% | Máxima variabilidad (p = 0,5)"
             "</div>",
             unsafe_allow_html=True
         )

@@ -72,9 +72,9 @@ if N:
 
     if muestra is not None:
         df_muestra = pd.DataFrame(
-            muestra,
-            columns=["Caso seleccionado"],
-            index=np.arange(1, len(muestra) + 1)
+        muestra,
+        columns=["Muestra"],
+        index=np.arange(1, len(muestra) + 1)
         )
 
         # ✅ Resumen de población y muestra, centrado

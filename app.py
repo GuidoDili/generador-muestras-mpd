@@ -64,25 +64,36 @@ if N:
 
     muestra = st.session_state.get("muestra_generada")
 
-    if muestra is not None:
+       if muestra is not None:
         df_muestra = pd.DataFrame(
             muestra,
             columns=["Caso seleccionado"],
             index=np.arange(1, len(muestra) + 1)
         )
 
-        # ✅ Tamaño muestral destacado y centrado
-       st.markdown(
-    f"<div style='text-align:center; font-size:18px;'>Población total: <b>{N} casos</b></div>",
-    unsafe_allow_html=True
-)
+        # ✅ Resumen de población y muestra, centrado
+        st.markdown(
+            f"<div style='text-align:center; font-size:18px;'>Población total: <b>{N} casos</b></div>",
+            unsafe_allow_html=True
+        )
 
-st.markdown(
-    f"<div style='text-align:center; font-size:26px;'>Tamaño de la muestra: "
-    f"<span style='color:green; font-weight:bold;'>{len(muestra)} casos</span></div>",
-    unsafe_allow_html=True
-)
+        st.markdown(
+            f"<div style='text-align:center; font-size:26px;'>Tamaño de la muestra: "
+            f"<span style='color:green; font-weight:bold;'>{len(muestra)} casos</span></div>",
+            unsafe_allow_html=True
+        )
 
+        st.markdown("---")
+        st.subheader("3. Descargar la muestra o el listado completo")
+
+        # Botón: descargar muestra
+        csv = df_muestra.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="Descargar muestra",
+            data=csv,
+            file_name="muestra.csv",
+            mime="text/csv"
+        )
         st.markdown("---")
         st.subheader("3. Descargar la muestra o el listado completo")
 

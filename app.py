@@ -26,6 +26,13 @@ st.markdown(
     "Permite calcular y seleccionar muestras aleatorias representativas para relevar una cantidad menor de casos y extrapolar los resultados al total de la población."
 )
 
+st.markdown(
+    "<div style='font-size:14px; color:gray;'>"
+    "La aplicación permite trabajar en un entorno seguro, ya que no requiere cargar ni compartir bases de datos."
+    "</div>",
+    unsafe_allow_html=True
+)
+
 st.markdown("---")
 st.subheader("1. Ingresar el tamaño de la población")
 

@@ -72,11 +72,16 @@ if N:
         )
 
         # ✅ Tamaño muestral destacado y centrado
-        st.markdown(
-            f"<div style='text-align:center; font-size:26px;'>Tamaño de la muestra requerido: "
-            f"<span style='color:green; font-weight:bold;'>{len(muestra)} casos</span></div>",
-            unsafe_allow_html=True
-        )
+       st.markdown(
+    f"<div style='text-align:center; font-size:18px;'>Población total: <b>{N} casos</b></div>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f"<div style='text-align:center; font-size:26px;'>Tamaño de la muestra: "
+    f"<span style='color:green; font-weight:bold;'>{len(muestra)} casos</span></div>",
+    unsafe_allow_html=True
+)
 
         st.markdown("---")
         st.subheader("3. Descargar la muestra o el listado completo")

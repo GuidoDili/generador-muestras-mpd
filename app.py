@@ -116,7 +116,7 @@ if N:
 
         # Botón: descargar población completa con "muestra" marcado
         todos = pd.DataFrame({
-    "Caso y muestra": [
+        "Caso y muestra (M = muestra)": [
         f"{i} (M)" if i in muestra else str(i)
         for i in range(1, N + 1)
         ]

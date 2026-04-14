@@ -111,7 +111,7 @@ if N:
         )
 
         st.markdown("---")
-        st.subheader("Casos de la muestra")
+        st.subheader("Listado de casos seleccionados")
 
         muestra_txt = ", ".join(str(i) for i in muestra)
         st.text_area("", muestra_txt, height=100)

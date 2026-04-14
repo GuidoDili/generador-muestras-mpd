@@ -19,7 +19,7 @@ st.markdown(
     "Esta herramienta fue desarrollada por el **Departamento de Estadísticas del MPD** para facilitar la generación de muestras aleatorias representativas. "
     "El tamaño de la muestra se calcula automáticamente utilizando un **95% de nivel de confianza** y un **5% de margen de error**, "
     "criterios metodológicos sólidos y alineados con los empleados en diseños muestrales previos. "
-    "El cálculo asume una proporción esperada de máxima variabilidad (p = 0,5)."
+    "El cálculo asume una proporción esperada de máxima variabilidad (p = 0.5)."
 )
 
 st.markdown(
@@ -72,9 +72,9 @@ if N:
 
     if muestra is not None:
         df_muestra = pd.DataFrame(
-        muestra,
-        columns=["Muestra"],
-        index=np.arange(1, len(muestra) + 1)
+            muestra,
+            columns=["Caso seleccionado"],
+            index=np.arange(1, len(muestra) + 1)
         )
 
         # ✅ Resumen de población y muestra, centrado
@@ -91,7 +91,7 @@ if N:
 
         st.markdown(
             "<div style='text-align:center; font-size:14px; color:gray;'>"
-            "Nivel de confianza: 95% | Margen de error: 5% | Máxima variabilidad (p = 0,5)"
+            "Nivel de confianza: 95% | Margen de error: 5% | Máxima variabilidad (p = 0.5)"
             "</div>",
             unsafe_allow_html=True
         )
@@ -116,9 +116,10 @@ if N:
 
         # Botón: descargar población completa con "muestra" marcado
         todos = pd.DataFrame({
-        "Caso y muestra": [
-        f"{i} (M)" if i in muestra else str(i) for i in range(1, int(N) + 1)
-        ]
+            "Listado con muestra": [
+                f"{i} muestra" if i in muestra else str(i)
+                for i in range(1, N + 1)
+            ]
         })
 
         csv_todos = todos.to_csv(index=False).encode('utf-8')
@@ -128,13 +129,3 @@ if N:
             file_name="listado_completo_con_muestra.csv",
             mime="text/csv"
         )
-
-        st.markdown("---")
-
-        st.markdown(
-        "<div style='font-size:13px; color:gray;'>"
-        "Para diseños muestrales específicos o para verificar la adecuación del muestreo aleatorio simple a los fines de cada investigación, "
-        "se sugiere consultar al Departamento de Estadísticas."
-        "</div>",
-        unsafe_allow_html=True
-        )    

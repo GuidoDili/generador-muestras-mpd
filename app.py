@@ -133,9 +133,9 @@ if N:
         st.markdown("---")
 
         st.markdown(
-            "<div style='font-size:13px; color:gray;'>"
-            "Para diseños muestrales específicos o para verificar la adecuación del muestreo aleatorio simple a los fines de cada investigación, "
-            "se sugiere consultar al Departamento de Estadísticas."
-            "</div>",
-            unsafe_allow_html=True
-        )
+        "<div style='font-size:13px; color:gray;'>"
+        "Para diseños muestrales específicos o para verificar la adecuación del muestreo aleatorio simple a los fines de cada investigación, "
+        "se sugiere consultar al Departamento de Estadísticas."
+        "</div>",
+        unsafe_allow_html=True
+        )    
